@@ -12,6 +12,9 @@
 </nav>
 <br/>
 <button @click="selectUserHandler">User</button>
+<button @click="selectPostHandler('1')">Post 1</button>
+<button @click="selectPostHandler('2')">Post 2</button>
+<button @click="selectPostHandler('3')">Post 3</button>
 <router-view></router-view>
 </div>
 </template>
@@ -26,7 +29,11 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class App extends Vue {
   selectUserHandler(){
     const id = Math.floor(Math.random() * 10);
-    this.$router.push({ path: 'user', query: { id: id.toString() }})
+    this.$router.push({ name: 'user', query: { id: id.toString() }})
+  }
+
+  selectPostHandler(id: string){
+      this.$router.push({ name: 'post', params: { id: id }})
   }
 }
 </script>
